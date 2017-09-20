@@ -18,16 +18,32 @@
       <ion-col>
         <ion-row>
           <button ion-button block>
-              <ion-icon name=camera></ion-icon>
+              <ion-icon name=camera (click)="tomarFoto()"></ion-icon>
           </button>
         </ion-row>
         <ion-row>
-          <button ion-button block>
+          <button ion-button block (click)="localizar()">
               <ion-icon name=locate></ion-icon>
           </button>
         </ion-row>
-        
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-grid>
+    <ion-row *ngIf="ubicacionLista">
+      <ion-col>
+        <agm-map
+        [latitude]="ubicacion.lat"
+        [longitude]="ubicacion.lng"
+        [zoom]="16"
+        [streetViewControl]="false"
+        [disableDefaultUI]="true">
+          <agm-marker 
+            [latitude]="ubicacion.lat"
+            [longitude]="ubicacion.lng">
+          </agm-marker>
+      </agm-map>
+      </ion-col>
+    </ion-row>  
+  </ion-grid>  
 </ion-content>

@@ -3,11 +3,17 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { MyApp } from './app.component';
+
 import { HomePage } from '../pages/home/home';
 import {AgregarRestaurantePage } from '../pages/agregar-restaurante/agregar-restaurante';
 import {RestaurantePage} from '../pages/restaurante/restaurante';
+
+import { AgmCoreModule } from '@agm/core';
+import { Ionic2RatingModule } from 'ionic2-rating'; 
+import { Camera } from '@ionic-native/camera';
 
 
 @NgModule({
@@ -19,7 +25,11 @@ import {RestaurantePage} from '../pages/restaurante/restaurante';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBK-9BS_sMhCdqpupjZITXStNlASJINd24'
+    }),
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,7 +41,9 @@ import {RestaurantePage} from '../pages/restaurante/restaurante';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Geolocation,
+    Camera
   ]
 })
 export class AppModule {}
