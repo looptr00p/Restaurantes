@@ -1,9 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Camera } from '@ionic-native/camera';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { File } from '@ionic-native/file';
 
 import { MyApp } from './app.component';
 
@@ -11,9 +16,13 @@ import { HomePage } from '../pages/home/home';
 import {AgregarRestaurantePage } from '../pages/agregar-restaurante/agregar-restaurante';
 import {RestaurantePage} from '../pages/restaurante/restaurante';
 
+import { RestauranteService } from './../servicios/restaurante.service';
+
 import { AgmCoreModule } from '@agm/core';
 import { Ionic2RatingModule } from 'ionic2-rating'; 
-import { Camera } from '@ionic-native/camera';
+import { IonicStorageModule } from '@ionic/storage';
+
+
 
 
 @NgModule({
@@ -27,9 +36,10 @@ import { Camera } from '@ionic-native/camera';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBK-9BS_sMhCdqpupjZITXStNlASJINd24'
+      apiKey: 'AIzaSyDd4oQgyOTn2gfE_jELK_QhrFASaTO-c3w'
     }),
-    Ionic2RatingModule
+    Ionic2RatingModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +53,10 @@ import { Camera } from '@ionic-native/camera';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation,
-    Camera
+    Camera,
+    RestauranteService,
+    SocialSharing,
+    File
   ]
 })
 export class AppModule {}

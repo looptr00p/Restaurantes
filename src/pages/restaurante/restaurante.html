@@ -1,18 +1,56 @@
-<!--
-  Generated template for the RestaurantePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>restaurante</ion-title>
+  <ion-navbar color=primary>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cerrar()">
+        <ion-icon name=close ></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons right>
+        <button ion-button icon-only (click)="compartirConWhatsapp()">
+          <ion-icon name=share ></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
+  <h2>{{ restaurante.nombre }}</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <agm-map
+          [latitude]="restaurante.ubicacion.lat"
+          [longitude]="restaurante.ubicacion.lng"
+          [zoom]="16"
+          [streetViewControl]="false"
+          [disableDefaultUI]="true">
+            <agm-marker 
+              [latitude]="restaurante.ubicacion.lat"
+              [longitude]="restaurante.ubicacion.lng">
+            </agm-marker>
+        </agm-map>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-slides>
+          <ion-slide *ngFor="let imagen of restaurante.imagenes">
+            <img [src]="imagen">
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+    <ion-row text-center class="rating">
+      <ion-col>
+        <rating [ngModel]="restaurante.rating"
+                readOnly=true>
+        </rating>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <button ion-button color="danger" block (click)="borrar()">
+        BORRAR RESTAURANTE 
+      </button>
+    </ion-row>
+  </ion-grid>
 </ion-content>

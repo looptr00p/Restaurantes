@@ -1,12 +1,33 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color=primary>
     <ion-title>
-      Ionic Blank
+      Restaurantes
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-card *ngFor="let restaurante of restaurantes; let rid = index" 
+    (click)="mostrarRestaurante(restaurante, rid)">
+    <img [src]="restaurante.imagenes[0]">
+    <div class="nombre">{{restaurante.nombre}}</div>
+    <div class="rating">
+      <ion-row tex-center>
+          <ion-col>
+            <rating [ngModel]="restaurante.rating"
+                    readOnly=true>
+            </rating>
+          </ion-col>
+        </ion-row>
+    </div>
+    <ion-row tex-center>
+        <ion-col>
+          <rating [ngModel]="restaurante.rating"
+                  readOnly=true>
+          </rating>
+        </ion-col>
+      </ion-row>
+  </ion-card>
   <ion-fab right bottom>
     <button ion-fab color=primary [navPush]="agregarRestaurantePage">
       <ion-icon name=add></ion-icon>
